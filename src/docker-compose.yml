@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+
+  training:
+    container_name: werec3d
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/workspace
+    ports:
+      - "8888:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: 'nvidia'
+              capabilities: [ gpu ]

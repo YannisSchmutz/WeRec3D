@@ -1,0 +1,19 @@
+# Cartopy may causes a version missmatch error with an ubuntu package when left here
+cartopy
+cdsapi
+click
+jupyter
+keras_tuner
+matplotlib
+mlflow
+netCDF4
+numpy
+pandas
+pydot
+pyreadr
+rioxarray
+seaborn
+scikit-image
+statsmodels
+tensorflow
+xarray
