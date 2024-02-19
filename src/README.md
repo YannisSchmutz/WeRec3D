@@ -46,6 +46,28 @@ pip-sync --python-executable venv_werec3d/bin/python requirements/requirements.t
 ```
 
 
+## Procedure for reproducibility
+1. Obtain and prepare ERA5 Data from the very scratch. As the necessary files created in this step are added to the git repo, one can skip it and proceed with step 2.
+```
+cd data_source/
+python download_create_daymean_sets.py -k <uid:key>
+python reduce_size_granularity.py
+# Download ETOPO1_Ice_g_geotiff.tif, save it to
+# https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/ice_surface/grid_registered/georeferenced_tiff/
+python create_elevation_data.py
+python create_land_sea_mask.py
+```
+2. Create climatology and anomaly data.
+```
+mkdir temporal_adjusted
+python adjust_temporal.py
+```
+
+
+
+
+
+
 
 ## Handy Docker Commands
 
