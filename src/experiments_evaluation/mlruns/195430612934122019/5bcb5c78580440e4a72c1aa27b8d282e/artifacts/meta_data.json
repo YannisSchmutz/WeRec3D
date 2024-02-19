@@ -1,0 +1,19 @@
+{
+  "desc": "Add elevation data and moving window",
+  "model": "model1",
+  "loss": "loss_total (alpha=0.5)",
+  "hyperparameters": "default",
+  "resolution": "1\u00b0",
+  "seasonal": "with seasonality",
+  "volume_size": "5x32x64",
+  "time_shift": "1 day",
+  "training": "incremental",
+  "position": "moving 2 positions per day",
+  "missing": "",
+  "missing_mechanism": "MCAR",
+  "model_extension": "None",
+  "cm_inclusion": "None",
+  "predictors": "t2m, msl, elevation",
+  "data_generator": "DataGenerator4, #3 for validation",
+  "hypothesis": "The inclusion of elevation data helps"
+}

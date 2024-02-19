@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/268521761758907097/c7bfe77966454766b5b04ef61a796dbf/artifacts
+end_time: 1703300915913
+entry_point_name: ''
+experiment_id: '268521761758907097'
+lifecycle_stage: active
+run_id: c7bfe77966454766b5b04ef61a796dbf
+run_name: cm_inclusion_70p
+run_uuid: c7bfe77966454766b5b04ef61a796dbf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703299005442
+status: 3
+tags: []
+user_id: root

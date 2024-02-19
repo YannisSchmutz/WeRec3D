@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/995218809617589705/303ddc6c203e434ca12bee4ce4635581/artifacts
+end_time: 1703495745469
+entry_point_name: ''
+experiment_id: '995218809617589705'
+lifecycle_stage: active
+run_id: 303ddc6c203e434ca12bee4ce4635581
+run_name: pi_init_10p
+run_uuid: 303ddc6c203e434ca12bee4ce4635581
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703493936334
+status: 3
+tags: []
+user_id: root

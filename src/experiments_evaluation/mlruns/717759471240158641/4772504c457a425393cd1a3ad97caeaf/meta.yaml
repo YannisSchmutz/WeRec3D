@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/717759471240158641/4772504c457a425393cd1a3ad97caeaf/artifacts
+end_time: 1703693214380
+entry_point_name: ''
+experiment_id: '717759471240158641'
+lifecycle_stage: active
+run_id: 4772504c457a425393cd1a3ad97caeaf
+run_name: emc_mnar_training_10p
+run_uuid: 4772504c457a425393cd1a3ad97caeaf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703689385231
+status: 3
+tags: []
+user_id: root

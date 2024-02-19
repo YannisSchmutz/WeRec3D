@@ -1,0 +1,19 @@
+{
+  "desc": "Use Physical Informed init values for masked cells",
+  "model": "model1",
+  "loss": "loss_total (alpha=0.5)",
+  "hyperparameters": "default",
+  "resolution": "1\u00b0",
+  "seasonal": "with seasonality",
+  "volume_size": "5x32x64",
+  "time_shift": "1 day",
+  "training": "incremental",
+  "position": "fixed",
+  "missing": "",
+  "missing_mechanism": "MCAR",
+  "model_extension": "None",
+  "cm_inclusion": "None",
+  "predictors": "t2m, msl",
+  "data_generator": "DataGenerator1",
+  "hypothesis": "PI initialization leads to faster convergence. Generalizability remains the same."
+}

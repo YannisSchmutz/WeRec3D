@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/724562387015362768/cddeb25f6f2949b5a9951e3b21cf0303/artifacts
+end_time: 1703759296250
+entry_point_name: ''
+experiment_id: '724562387015362768'
+lifecycle_stage: active
+run_id: cddeb25f6f2949b5a9951e3b21cf0303
+run_name: emc_nineties_96p
+run_uuid: cddeb25f6f2949b5a9951e3b21cf0303
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703755565350
+status: 3
+tags: []
+user_id: root

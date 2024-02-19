@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/953112888648581254/a11c6e2766874f288e031bbfa88854f4/artifacts
+end_time: 1703215026431
+entry_point_name: ''
+experiment_id: '953112888648581254'
+lifecycle_stage: active
+run_id: a11c6e2766874f288e031bbfa88854f4
+run_name: seasonal_component_80p
+run_uuid: a11c6e2766874f288e031bbfa88854f4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703213125381
+status: 3
+tags: []
+user_id: root

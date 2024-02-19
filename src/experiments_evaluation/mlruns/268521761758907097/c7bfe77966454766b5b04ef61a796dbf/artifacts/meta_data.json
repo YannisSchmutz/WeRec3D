@@ -1,0 +1,19 @@
+{
+  "desc": "Add covariance matrix via loss function",
+  "model": "model2",
+  "loss": "loss_total2 (alpha=0.5, beta=0.9)",
+  "hyperparameters": "default",
+  "resolution": "1\u00b0",
+  "seasonal": "with seasonality",
+  "volume_size": "5x32x64",
+  "time_shift": "1 day",
+  "training": "incremental",
+  "position": "fixed",
+  "missing": "",
+  "missing_mechanism": "MCAR",
+  "model_extension": "None",
+  "cm_inclusion": "Via loss (10% cm-loss added)",
+  "predictors": "t2m, msl",
+  "data_generator": "DataGenerator1",
+  "hypothesis": "CM inclusion leads to better performance and generalizability."
+}

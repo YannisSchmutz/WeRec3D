@@ -1,0 +1,19 @@
+{
+  "desc": "Compare influence of incremental trainingModel checkpoint with lowest val-error is used for next run",
+  "model": "model1",
+  "loss": "mmae-mae linear combination, alpha=0.5",
+  "hyperparameters": "default",
+  "resolution": "1\u00b0",
+  "seasonal": "with seasonality",
+  "volume_size": "5x32x64",
+  "time_shift": "1 day",
+  "training": "incremental",
+  "position": "fixed",
+  "missing": "",
+  "missing_mechanism": "MCAR",
+  "model_extension": "None",
+  "cm_inclusion": "None",
+  "predictors": "t2m, msl",
+  "data_generator": "DataGenerator1",
+  "hypothesis": "Incremental pre-training improves performance"
+}

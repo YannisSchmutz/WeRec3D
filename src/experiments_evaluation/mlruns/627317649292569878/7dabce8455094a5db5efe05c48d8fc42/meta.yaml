@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/627317649292569878/7dabce8455094a5db5efe05c48d8fc42/artifacts
+end_time: 1703689381165
+entry_point_name: ''
+experiment_id: '627317649292569878'
+lifecycle_stage: active
+run_id: 7dabce8455094a5db5efe05c48d8fc42
+run_name: emc_fine_tune_99p
+run_uuid: 7dabce8455094a5db5efe05c48d8fc42
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703685693617
+status: 3
+tags: []
+user_id: root

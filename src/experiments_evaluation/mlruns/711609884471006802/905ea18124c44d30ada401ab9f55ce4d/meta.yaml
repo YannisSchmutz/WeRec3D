@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/711609884471006802/905ea18124c44d30ada401ab9f55ce4d/artifacts
+end_time: 1703463086899
+entry_point_name: ''
+experiment_id: '711609884471006802'
+lifecycle_stage: active
+run_id: 905ea18124c44d30ada401ab9f55ce4d
+run_name: elevation_50p
+run_uuid: 905ea18124c44d30ada401ab9f55ce4d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703461157220
+status: 3
+tags: []
+user_id: root

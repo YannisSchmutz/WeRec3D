@@ -1,0 +1,6 @@
+artifact_location: file:///workspace/experiments_evaluation/mlruns/921988501854782171
+creation_time: 1703251242012
+experiment_id: '921988501854782171'
+last_update_time: 1703251242012
+lifecycle_stage: active
+name: ex3.1_moving_window

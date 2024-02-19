@@ -1,0 +1,6 @@
+artifact_location: file:///workspace/experiments_evaluation/mlruns/717759471240158641
+creation_time: 1703689385163
+experiment_id: '717759471240158641'
+last_update_time: 1703689385163
+lifecycle_stage: active
+name: ex7.2_emc_mnar_training

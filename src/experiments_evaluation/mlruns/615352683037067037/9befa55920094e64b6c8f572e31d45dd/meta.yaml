@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/615352683037067037/9befa55920094e64b6c8f572e31d45dd/artifacts
+end_time: 1703606186578
+entry_point_name: ''
+experiment_id: '615352683037067037'
+lifecycle_stage: active
+run_id: 9befa55920094e64b6c8f572e31d45dd
+run_name: elev_mov_pi_20p
+run_uuid: 9befa55920094e64b6c8f572e31d45dd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703602392512
+status: 3
+tags: []
+user_id: root

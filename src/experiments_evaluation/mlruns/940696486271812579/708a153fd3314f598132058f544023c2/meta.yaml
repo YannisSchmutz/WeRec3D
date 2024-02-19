@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/940696486271812579/708a153fd3314f598132058f544023c2/artifacts
+end_time: 1703186652134
+entry_point_name: ''
+experiment_id: '940696486271812579'
+lifecycle_stage: active
+run_id: 708a153fd3314f598132058f544023c2
+run_name: baseline_30p
+run_uuid: 708a153fd3314f598132058f544023c2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703184796562
+status: 3
+tags: []
+user_id: root

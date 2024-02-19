@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/195430612934122019/5bcb5c78580440e4a72c1aa27b8d282e/artifacts
+end_time: 1703531548529
+entry_point_name: ''
+experiment_id: '195430612934122019'
+lifecycle_stage: active
+run_id: 5bcb5c78580440e4a72c1aa27b8d282e
+run_name: elev_mov_win_40p
+run_uuid: 5bcb5c78580440e4a72c1aa27b8d282e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703527775699
+status: 3
+tags: []
+user_id: root

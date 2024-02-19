@@ -62,25 +62,23 @@ python create_land_sea_mask.py
 mkdir temporal_adjusted
 python adjust_temporal.py
 ```
-
-
-
-
-
-
-
-## Handy Docker Commands
-
-Start docker container
+3. Create train, validation and test data:
 ```
-sudo docker-compose up --build -d
+# Go to preprocessing folder
+python create_tvt_split.py
+python mask_creation.py --missing_mechanism mcar
+python mask_creation.py --missing_mechanism mnar
+python create_ymean_sets.py
 ```
-Access docker container
+4. Run all experiments. This may take several days!
 ```
-sudo docker exec -it werec3d bash
+# Go to experiments_evaluation/
+python run_all_experiments.py
 ```
+5. Run the jupyter notebooks:
+* 01_compare_experiment_runs.ipynb
+* 02_create_val_preds_and_errors.ipynb
+* 03_spatial_temporal_val.ipynb
+* 04_validate_on_anomalies.ipynb
+6. 
 
-Stop docker container
-```
-sudo docker stop werec3d
-```

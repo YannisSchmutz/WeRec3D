@@ -1,0 +1,15 @@
+artifact_uri: file:///workspace/experiments_evaluation/mlruns/324347052788469566/087fc20ed13e431589e11b2d6e9e6a28/artifacts
+end_time: 1703245234419
+entry_point_name: ''
+experiment_id: '324347052788469566'
+lifecycle_stage: active
+run_id: 087fc20ed13e431589e11b2d6e9e6a28
+run_name: inc_pretrain_80p
+run_uuid: 087fc20ed13e431589e11b2d6e9e6a28
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1703243367437
+status: 3
+tags: []
+user_id: root
