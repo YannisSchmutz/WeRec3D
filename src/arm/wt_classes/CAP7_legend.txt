@@ -1,0 +1,24 @@
+CAP7
+Reconstruction of Central European daily weather types based on temperature, sea level pressure and pressure tendency data.
+
+Schwander, M., Brönnimann, S., Delaygue, G., Rohrer, M., Auchmann, R. and Brugnara, Y.: Reconstruction of Central
+European daily weather types back to 1763, Int. J. Climatol., doi:10.1002/joc.4974, 2017.
+
+date: yyyy-mm-dd 
+y year
+m month
+d day
+
+type: index
+
+probability: probability value of each day being correctly classified (relative to the reference classification CAP9)
+
+
+index; abbreviation; full name
+1; NE; NorthEast,indifferent 
+2; WSW; West-SouthWest, cyclonic, flat pressure 
+3; W; Westerly flow over Northern Europe 
+4; E; East, indifferent 
+5; HP; High Pressure over Europe
+6; N; North, cyclonic 
+7; WC; Westerly flow over Southern Europe, cyclonic

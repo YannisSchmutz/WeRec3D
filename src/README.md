@@ -80,5 +80,10 @@ python run_all_experiments.py
 * 02_create_val_preds_and_errors.ipynb
 * 03_spatial_temporal_val.ipynb
 * 04_validate_on_anomalies.ipynb
-6. 
+6. Create Analogue Resampling Method metadata
+```
+# In arm/
+python create_weather_types.py
+```
+7. 
 
