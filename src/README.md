@@ -85,5 +85,14 @@ python run_all_experiments.py
 # In arm/
 python create_weather_types.py
 ```
-7. 
-
+7. Validate on test data set
+```
+# In validation_on_test_set
+python a1_create_arm_data.py
+``` 
+Run notebooks:
+* investigate_analog_quality.ipynb (optional)
+* validate_nmar_adjusted.ipynb
+* validate_arm_enhanced.ipynb
+* validate_arm_wt_enhanced.ipynb
+8. 

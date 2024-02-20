@@ -1,16 +1,22 @@
-import numpy as np
+import os
+import sys
+from pathlib import Path
 
-T2M_MU = 7.9444466
-T2M_SIGMA = 8.895299
-SLP_MU = 101334.484
-SLP_SIGMA = 1098.013
+SCRIPT_DIR = os.path.dirname(os.path.abspath("__init__.py"))
+SRC_DIR = Path(SCRIPT_DIR).parent.absolute()
+sys.path.append(os.path.dirname(SRC_DIR))
+
+from src.config import TA_MU, TA_SIGMA, SLP_MU, SLP_SIGMA
+from src.config import BASE_WINDOW_Y_CROP_1, BASE_WINDOW_Y_CROP_2, BASE_WINDOW_X_CROP_1, BASE_WINDOW_X_CROP_2
+
+import numpy as np
 
 
 def scale_t2m_back(var, for_error=False):
     if for_error:
         # Scaling back for error only requires sigma, the mu gets eliminated in the subtraction
-        return np.multiply(var, T2M_SIGMA)
-    return np.add(np.multiply(var, T2M_SIGMA),  T2M_MU)
+        return np.multiply(var, TA_SIGMA)
+    return np.add(np.multiply(var, TA_SIGMA),  TA_MU)
 
 
 def scale_slp_back(var, for_error=False):
@@ -26,8 +32,7 @@ def prepare_quantitative_samples1(mat, f=5, seq_reshape=True):
     Expected shape: (Time, Hight, Width, Channels)
     """
     # Crop to base window
-    # TODO: Base window cropping values as GLOBALS?
-    mat = mat[:, 6:38, 2:66]
+    mat = mat[:, BASE_WINDOW_Y_CROP_1:BASE_WINDOW_Y_CROP_2, BASE_WINDOW_X_CROP_1:BASE_WINDOW_X_CROP_2]
     base_shape = mat.shape
 
     nbr_samples = base_shape[0] // f
