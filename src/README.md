@@ -95,4 +95,24 @@ Run notebooks:
 * validate_nmar_adjusted.ipynb
 * validate_arm_enhanced.ipynb
 * validate_arm_wt_enhanced.ipynb
-8. 
+8. Infere on year 1807
+
+Prepare data:
+```
+python a0_create_metadata_1807.py
+python a1_create_inference_1807_data.py
+python a2_create_analogs.py
+```
+Model data:
+```
+python reconstruct_historic_weather.py -r full -m plain   
+python reconstruct_historic_weather.py -r full -m arm                   
+python reconstruct_historic_weather.py -r full -m arm_wt                
+python reconstruct_historic_weather.py -r loo -m plain                  
+python reconstruct_historic_weather.py -r loo -m arm                    
+python reconstruct_historic_weather.py -r loo -m arm_wt
+```
+Validate by running the notebooks:
+* validate_plain.ipynb
+* validate_arm.ipynb
+* validate_arm_wt.ipynb
