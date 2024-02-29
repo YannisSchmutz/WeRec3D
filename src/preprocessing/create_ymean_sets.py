@@ -9,6 +9,7 @@ Y_DAY_MAEN_MSL = "era5_msl_ydaymean_19502022.nc"
 
 VAL_DATE_RANGE = ("1955-01-01", "1964-12-31")
 TEST_DATE_RANGE = ("1950-01-01", "1954-12-31")
+INFERENCE_DATE_RANGE = ("1807-01-01", "1807-12-31")
 
 DST_DIR = "../data_sets/ymean_sets/"
 
@@ -36,17 +37,21 @@ def main():
 
     val_dates = pd.date_range(start=VAL_DATE_RANGE[0], end=VAL_DATE_RANGE[1], freq="D")
     test_dates = pd.date_range(start=TEST_DATE_RANGE[0], end=TEST_DATE_RANGE[1], freq="D")
+    inference_dates = pd.date_range(start=INFERENCE_DATE_RANGE[0], end=INFERENCE_DATE_RANGE[1], freq="D")
 
     val_set_ymean = create_data_set_ymean(val_dates, t2m_ymean, msl_ymean)
     test_set_ymean = create_data_set_ymean(test_dates, t2m_ymean, msl_ymean)
+    inference_set_ymean = create_data_set_ymean(inference_dates, t2m_ymean, msl_ymean)
 
-    print("Created val and test ymean sets with shape:")
+    print("Created val, test and inference ymean sets with shape:")
     print(val_set_ymean.shape)
     print(test_set_ymean.shape)
+    print(inference_set_ymean.shape)
 
     # SAVE
     np.save(DST_DIR + "validation_ymean.npy", val_set_ymean.astype('float32'))
     np.save(DST_DIR + "test_ymean.npy", test_set_ymean.astype('float32'))
+    np.save(DST_DIR + "inference_ymean.npy", inference_set_ymean.astype('float32'))
 
 
 if __name__ == "__main__":
