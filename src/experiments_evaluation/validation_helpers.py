@@ -7,6 +7,7 @@ SRC_DIR = Path(SCRIPT_DIR).parent.absolute()
 sys.path.append(os.path.dirname(SRC_DIR))
 
 from src.config import TA_MU, TA_SIGMA, SLP_MU, SLP_SIGMA
+from src.config import F, H, W
 from src.config import BASE_WINDOW_Y_CROP_1, BASE_WINDOW_Y_CROP_2, BASE_WINDOW_X_CROP_1, BASE_WINDOW_X_CROP_2
 
 import numpy as np
@@ -26,23 +27,48 @@ def scale_slp_back(var, for_error=False):
     return np.add(np.multiply(var, SLP_SIGMA),  SLP_MU)
 
 
-def prepare_quantitative_samples1(mat, f=5, seq_reshape=True):
-    """
-
-    Expected shape: (Time, Hight, Width, Channels)
-    """
-    # Crop to base window
-    mat = mat[:, BASE_WINDOW_Y_CROP_1:BASE_WINDOW_Y_CROP_2, BASE_WINDOW_X_CROP_1:BASE_WINDOW_X_CROP_2]
+def reshape_for_modelling(mat, seq_shift_reshape=True):
     base_shape = mat.shape
 
-    nbr_samples = base_shape[0] // f
-    cut_off = nbr_samples * f
+    # Crop to base window
+    mat = mat[:, BASE_WINDOW_Y_CROP_1:BASE_WINDOW_Y_CROP_2, BASE_WINDOW_X_CROP_1:BASE_WINDOW_X_CROP_2]
+
+    nbr_samples = base_shape[0] // F
+    cut_off = nbr_samples * F
     # Make sure it is dividable through "f"
     mat = mat[:cut_off]
-    # Reshape to samples, frames, ...
-    if seq_reshape:
-        mat = np.reshape(mat, (nbr_samples, f, base_shape[1], base_shape[2], base_shape[3]))
+    if seq_shift_reshape:
+        shifted_samples = np.zeros((mat.shape[0] - F + 1, F, H, W, mat.shape[-1]))
+        for i in range(shifted_samples.shape[0]):
+            shifted_samples[i] = mat[i:i + F]
+        return shifted_samples
     return mat
+
+
+def get_median_pred_days(pred):
+    """
+    Apply rolling median over prediction to get the median values for each day.
+    :param pred: Prediction with shape(Samples, Frames, H, W, C)
+    :return:
+    """
+    days_in_pred = pred.shape[0]
+    median_pred = np.zeros((days_in_pred, H, W, 2))
+    for i in range(days_in_pred):
+        sample_id = i
+        frame_offset = 0
+        if i > days_in_pred - F:
+            sample_id = days_in_pred - F
+            frame_offset = i - (days_in_pred - F)
+
+        window_sample_ids = np.arange(sample_id, sample_id-F, -1)
+        window_sample_ids = window_sample_ids[window_sample_ids >= 0]
+        corresp_frame_ids = np.array([j+frame_offset for j in range(len(window_sample_ids))])
+        corresp_frame_ids = corresp_frame_ids[corresp_frame_ids < F]
+        window_sample_ids = window_sample_ids[:len(corresp_frame_ids)]
+
+        day_i_val = np.median(pred[window_sample_ids, corresp_frame_ids], axis=0)
+        median_pred[i] = day_i_val
+    return median_pred
 
 
 def calc_total_errors(y, pred):
