@@ -1,10 +1,3 @@
-import os
-from pathlib import Path
-
-# TODO: Change paths to relative from src dir!
-# Path prep
-
-
 METADATA_DIR = "/metadata/"
 
 # STATION_INDICES = "metadata/station_{}_matrix_indices.csv"
