@@ -1,8 +1,12 @@
 # WeRec3D
 
+<img src="doc/modelling.png" alt="modelling" width="600"/>
+
+
 
 ## Install requirements and venv
-This description is targeted for MacOS or Linux operating systems and uses Python3.11.
+This description is targeted for MacOS or Linux operating systems and uses Python3.11. 
+Unless otherwise stated, shell commands assume to be executed in the src/ directory.
 
 Make sure piptools is installed
 ```
@@ -17,7 +21,6 @@ make requirements.txt
 
 Create venv
 ```
-# Go to src/
 python3.11 -m venv venv_werec3d
 ```
 Activate venv
@@ -52,7 +55,7 @@ pip-sync --python-executable venv_werec3d/bin/python requirements/requirements.t
 cd data_source/
 python download_create_daymean_sets.py -k <uid:key>
 python reduce_size_granularity.py
-# Download ETOPO1_Ice_g_geotiff.tif, save it to
+# Download ETOPO1_Ice_g_geotiff.tif, save it to src/data_source/elevation/ETOPO1_Ice_g_geotiff.tif
 # https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/ice_surface/grid_registered/georeferenced_tiff/
 python create_elevation_data.py
 python create_land_sea_mask.py
