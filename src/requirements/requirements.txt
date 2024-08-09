@@ -6,18 +6,19 @@
 #
 absl-py==2.1.0
     # via
+    #   keras
     #   tensorboard
-    #   tensorflow-macos
+    #   tensorflow
 affine==2.4.0
     # via rasterio
-alembic==1.13.1
+alembic==1.13.2
     # via mlflow
-anyio==4.3.0
+aniso8601==9.0.1
+    # via graphene
+anyio==4.4.0
     # via
     #   httpx
     #   jupyter-server
-appnope==0.1.4
-    # via ipykernel
 argon2-cffi==23.1.0
     # via jupyter-server
 argon2-cffi-bindings==21.2.0
@@ -27,29 +28,34 @@ arrow==1.3.0
 asttokens==2.4.1
     # via stack-data
 astunparse==1.6.3
-    # via tensorflow-macos
+    # via tensorflow
 async-lru==2.0.4
     # via jupyterlab
-attrs==23.2.0
+attrs==24.2.0
     # via
+    #   cads-api-client
     #   jsonschema
     #   rasterio
     #   referencing
-babel==2.14.0
+babel==2.16.0
     # via jupyterlab-server
 beautifulsoup4==4.12.3
     # via nbconvert
 bleach==6.1.0
     # via nbconvert
-blinker==1.7.0
+blinker==1.8.2
     # via flask
-cachetools==5.3.2
-    # via google-auth
-cartopy==0.22.0
+cachetools==5.4.0
+    # via
+    #   google-auth
+    #   mlflow-skinny
+cads-api-client==1.2.0
+    # via cdsapi
+cartopy==0.23.0
     # via -r requirements.in
-cdsapi==0.6.1
+cdsapi==0.7.0
     # via -r requirements.in
-certifi==2024.2.2
+certifi==2024.7.4
     # via
     #   httpcore
     #   httpx
@@ -57,9 +63,9 @@ certifi==2024.2.2
     #   pyproj
     #   rasterio
     #   requests
-cffi==1.16.0
+cffi==1.17.0
     # via argon2-cffi-bindings
-cftime==1.6.3
+cftime==1.6.4
     # via netcdf4
 charset-normalizer==3.3.2
     # via requests
@@ -69,102 +75,118 @@ click==8.1.7
     #   click-plugins
     #   cligj
     #   flask
-    #   mlflow
+    #   mlflow-skinny
     #   rasterio
 click-plugins==1.1.1
     # via rasterio
 cligj==0.7.2
     # via rasterio
 cloudpickle==3.0.0
-    # via mlflow
-comm==0.2.1
+    # via mlflow-skinny
+comm==0.2.2
     # via
     #   ipykernel
     #   ipywidgets
-contourpy==1.2.0
+contourpy==1.2.1
     # via matplotlib
 cycler==0.12.1
     # via matplotlib
-debugpy==1.8.1
+databricks-sdk==0.29.0
+    # via mlflow-skinny
+debugpy==1.8.5
     # via ipykernel
 decorator==5.1.1
     # via ipython
 defusedxml==0.7.1
     # via nbconvert
-docker==7.0.0
+deprecated==1.2.14
+    # via
+    #   opentelemetry-api
+    #   opentelemetry-semantic-conventions
+docker==7.1.0
     # via mlflow
 entrypoints==0.4
-    # via mlflow
+    # via mlflow-skinny
 executing==2.0.1
     # via stack-data
-fastjsonschema==2.19.1
+fastjsonschema==2.20.0
     # via nbformat
-flask==3.0.2
+flask==3.0.3
     # via mlflow
-flatbuffers==23.5.26
-    # via tensorflow-macos
-fonttools==4.49.0
+flatbuffers==24.3.25
+    # via tensorflow
+fonttools==4.53.1
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
-gast==0.5.4
-    # via tensorflow-macos
+gast==0.6.0
+    # via tensorflow
 gitdb==4.0.11
     # via gitpython
-gitpython==3.1.42
-    # via mlflow
-google-auth==2.28.0
-    # via
-    #   google-auth-oauthlib
-    #   tensorboard
-google-auth-oauthlib==1.2.0
-    # via tensorboard
+gitpython==3.1.43
+    # via mlflow-skinny
+google-auth==2.33.0
+    # via databricks-sdk
 google-pasta==0.2.0
-    # via tensorflow-macos
-grpcio==1.60.1
+    # via tensorflow
+graphene==3.3
+    # via mlflow
+graphql-core==3.2.3
+    # via
+    #   graphene
+    #   graphql-relay
+graphql-relay==3.2.0
+    # via graphene
+greenlet==3.0.3
+    # via sqlalchemy
+grpcio==1.65.4
     # via
     #   tensorboard
-    #   tensorflow-macos
-gunicorn==21.2.0
+    #   tensorflow
+gunicorn==22.0.0
     # via mlflow
 h11==0.14.0
     # via httpcore
-h5py==3.10.0
-    # via tensorflow-macos
-httpcore==1.0.3
+h5py==3.11.0
+    # via
+    #   keras
+    #   tensorflow
+httpcore==1.0.5
     # via httpx
-httpx==0.26.0
+httpx==0.27.0
     # via jupyterlab
-idna==3.6
+idna==3.7
     # via
     #   anyio
     #   httpx
     #   jsonschema
     #   requests
-imageio==2.34.0
+imageio==2.34.2
     # via scikit-image
-importlib-metadata==7.0.1
-    # via mlflow
-ipykernel==6.29.2
+importlib-metadata==7.2.1
+    # via
+    #   mlflow-skinny
+    #   opentelemetry-api
+ipykernel==6.29.5
     # via
     #   jupyter
     #   jupyter-console
     #   jupyterlab
     #   qtconsole
-ipython==8.21.0
+ipython==8.26.0
     # via
     #   ipykernel
     #   ipywidgets
     #   jupyter-console
-ipywidgets==8.1.2
+ipywidgets==8.1.3
     # via jupyter
 isoduration==20.11.0
     # via jsonschema
-itsdangerous==2.1.2
+itsdangerous==2.2.0
     # via flask
 jedi==0.19.1
     # via ipython
-jinja2==3.1.3
+jinja2==3.1.4
     # via
     #   flask
     #   jupyter-server
@@ -172,13 +194,13 @@ jinja2==3.1.3
     #   jupyterlab-server
     #   mlflow
     #   nbconvert
-joblib==1.3.2
+joblib==1.4.2
     # via scikit-learn
-json5==0.9.14
+json5==0.9.25
     # via jupyterlab-server
-jsonpointer==2.4
+jsonpointer==3.0.0
     # via jsonschema
-jsonschema[format-nongpl]==4.21.1
+jsonschema[format-nongpl]==4.23.0
     # via
     #   jupyter-events
     #   jupyterlab-server
@@ -187,7 +209,7 @@ jsonschema-specifications==2023.12.1
     # via jsonschema
 jupyter==1.0.0
     # via -r requirements.in
-jupyter-client==8.6.0
+jupyter-client==8.6.2
     # via
     #   ipykernel
     #   jupyter-console
@@ -196,7 +218,7 @@ jupyter-client==8.6.0
     #   qtconsole
 jupyter-console==6.6.3
     # via jupyter
-jupyter-core==5.7.1
+jupyter-core==5.7.2
     # via
     #   ipykernel
     #   jupyter-client
@@ -207,89 +229,101 @@ jupyter-core==5.7.1
     #   nbconvert
     #   nbformat
     #   qtconsole
-jupyter-events==0.9.0
+jupyter-events==0.10.0
     # via jupyter-server
-jupyter-lsp==2.2.2
+jupyter-lsp==2.2.5
     # via jupyterlab
-jupyter-server==2.12.5
+jupyter-server==2.14.2
     # via
     #   jupyter-lsp
     #   jupyterlab
     #   jupyterlab-server
     #   notebook
     #   notebook-shim
-jupyter-server-terminals==0.5.2
+jupyter-server-terminals==0.5.3
     # via jupyter-server
-jupyterlab==4.1.1
+jupyterlab==4.2.4
     # via notebook
 jupyterlab-pygments==0.3.0
     # via nbconvert
-jupyterlab-server==2.25.3
+jupyterlab-server==2.27.3
     # via
     #   jupyterlab
     #   notebook
-jupyterlab-widgets==3.0.10
+jupyterlab-widgets==3.0.11
     # via ipywidgets
-keras==2.15.0
+keras==3.4.1
     # via
     #   keras-tuner
-    #   tensorflow-macos
-keras-tuner==1.4.6
+    #   tensorflow
+keras-tuner==1.4.7
     # via -r requirements.in
 kiwisolver==1.4.5
     # via matplotlib
 kt-legacy==1.0.5
     # via keras-tuner
-lazy-loader==0.3
+lazy-loader==0.4
     # via scikit-image
-libclang==16.0.6
-    # via tensorflow-macos
-mako==1.3.2
+libclang==18.1.1
+    # via tensorflow
+mako==1.3.5
     # via alembic
-markdown==3.5.2
+markdown==3.6
     # via
     #   mlflow
     #   tensorboard
+markdown-it-py==3.0.0
+    # via rich
 markupsafe==2.1.5
     # via
     #   jinja2
     #   mako
     #   nbconvert
     #   werkzeug
-matplotlib==3.8.3
+matplotlib==3.9.1.post1
     # via
     #   -r requirements.in
     #   cartopy
     #   mlflow
     #   seaborn
-matplotlib-inline==0.1.6
+matplotlib-inline==0.1.7
     # via
     #   ipykernel
     #   ipython
+mdurl==0.1.2
+    # via markdown-it-py
 mistune==3.0.2
     # via nbconvert
-ml-dtypes==0.2.0
-    # via tensorflow-macos
-mlflow==2.10.2
+ml-dtypes==0.4.0
+    # via
+    #   keras
+    #   tensorflow
+mlflow==2.15.1
     # via -r requirements.in
-nbclient==0.9.0
+mlflow-skinny==2.15.1
+    # via mlflow
+multiurl==0.3.1
+    # via cads-api-client
+namex==0.0.8
+    # via keras
+nbclient==0.10.0
     # via nbconvert
-nbconvert==7.16.0
+nbconvert==7.16.4
     # via
     #   jupyter
     #   jupyter-server
-nbformat==5.9.2
+nbformat==5.10.4
     # via
     #   jupyter-server
     #   nbclient
     #   nbconvert
 nest-asyncio==1.6.0
     # via ipykernel
-netcdf4==1.6.5
+netcdf4==1.7.1.post1
     # via -r requirements.in
-networkx==3.2.1
+networkx==3.3
     # via scikit-image
-notebook==7.1.0
+notebook==7.2.1
     # via jupyter
 notebook-shim==0.2.4
     # via
@@ -303,6 +337,7 @@ numpy==1.26.4
     #   contourpy
     #   h5py
     #   imageio
+    #   keras
     #   matplotlib
     #   ml-dtypes
     #   mlflow
@@ -321,36 +356,46 @@ numpy==1.26.4
     #   snuggs
     #   statsmodels
     #   tensorboard
-    #   tensorflow-macos
+    #   tensorflow
     #   tifffile
     #   xarray
-oauthlib==3.2.2
-    # via requests-oauthlib
+opentelemetry-api==1.26.0
+    # via
+    #   mlflow-skinny
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+opentelemetry-sdk==1.26.0
+    # via mlflow-skinny
+opentelemetry-semantic-conventions==0.47b0
+    # via opentelemetry-sdk
 opt-einsum==3.3.0
-    # via tensorflow-macos
+    # via tensorflow
+optree==0.12.1
+    # via keras
 overrides==7.7.0
     # via jupyter-server
-packaging==23.2
+packaging==24.1
     # via
     #   cartopy
-    #   docker
     #   gunicorn
     #   ipykernel
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
+    #   keras
     #   keras-tuner
+    #   lazy-loader
     #   matplotlib
-    #   mlflow
+    #   mlflow-skinny
     #   nbconvert
     #   qtconsole
     #   qtpy
     #   rioxarray
     #   scikit-image
     #   statsmodels
-    #   tensorflow-macos
+    #   tensorflow
     #   xarray
-pandas==2.2.0
+pandas==2.2.2
     # via
     #   -r requirements.in
     #   mlflow
@@ -360,57 +405,58 @@ pandas==2.2.0
     #   xarray
 pandocfilters==1.5.1
     # via nbconvert
-parso==0.8.3
+parso==0.8.4
     # via jedi
 patsy==0.5.6
     # via statsmodels
 pexpect==4.9.0
     # via ipython
-pillow==10.2.0
+pillow==10.4.0
     # via
     #   imageio
     #   matplotlib
     #   scikit-image
-platformdirs==4.2.0
+platformdirs==4.2.2
     # via jupyter-core
 prometheus-client==0.20.0
     # via jupyter-server
-prompt-toolkit==3.0.43
+prompt-toolkit==3.0.47
     # via
     #   ipython
     #   jupyter-console
-protobuf==4.25.3
+protobuf==4.25.4
     # via
-    #   mlflow
+    #   mlflow-skinny
     #   tensorboard
-    #   tensorflow-macos
-psutil==5.9.8
+    #   tensorflow
+psutil==6.0.0
     # via ipykernel
 ptyprocess==0.7.0
     # via
     #   pexpect
     #   terminado
-pure-eval==0.2.2
+pure-eval==0.2.3
     # via stack-data
-pyarrow==15.0.0
+pyarrow==15.0.2
     # via mlflow
-pyasn1==0.5.1
+pyasn1==0.6.0
     # via
     #   pyasn1-modules
     #   rsa
-pyasn1-modules==0.3.0
+pyasn1-modules==0.4.0
     # via google-auth
-pycparser==2.21
+pycparser==2.22
     # via cffi
-pydot==2.0.0
+pydot==3.0.1
     # via -r requirements.in
-pygments==2.17.2
+pygments==2.18.0
     # via
     #   ipython
     #   jupyter-console
     #   nbconvert
     #   qtconsole
-pyparsing==3.1.1
+    #   rich
+pyparsing==3.1.2
     # via
     #   matplotlib
     #   pydot
@@ -419,57 +465,59 @@ pyproj==3.6.1
     # via
     #   cartopy
     #   rioxarray
-pyreadr==0.5.0
+pyreadr==0.5.2
     # via -r requirements.in
 pyshp==2.3.1
     # via cartopy
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via
     #   arrow
     #   jupyter-client
     #   matplotlib
+    #   multiurl
     #   pandas
 python-json-logger==2.0.7
     # via jupyter-events
-pytz==2023.4
+pytz==2024.1
     # via
-    #   mlflow
+    #   mlflow-skinny
+    #   multiurl
     #   pandas
-pyyaml==6.0.1
+pyyaml==6.0.2
     # via
     #   jupyter-events
-    #   mlflow
-pyzmq==25.1.2
+    #   mlflow-skinny
+pyzmq==26.1.0
     # via
     #   ipykernel
     #   jupyter-client
     #   jupyter-console
     #   jupyter-server
     #   qtconsole
-qtconsole==5.5.1
+qtconsole==5.5.2
     # via jupyter
 qtpy==2.4.1
     # via qtconsole
 querystring-parser==1.2.4
     # via mlflow
-rasterio==1.3.9
+rasterio==1.3.10
     # via rioxarray
-referencing==0.33.0
+referencing==0.35.1
     # via
     #   jsonschema
     #   jsonschema-specifications
     #   jupyter-events
-requests==2.31.0
+requests==2.32.3
     # via
+    #   cads-api-client
     #   cdsapi
+    #   databricks-sdk
     #   docker
     #   jupyterlab-server
     #   keras-tuner
-    #   mlflow
-    #   requests-oauthlib
-    #   tensorboard
-requests-oauthlib==1.3.1
-    # via google-auth-oauthlib
+    #   mlflow-skinny
+    #   multiurl
+    #   tensorflow
 rfc3339-validator==0.1.4
     # via
     #   jsonschema
@@ -478,19 +526,21 @@ rfc3986-validator==0.1.1
     # via
     #   jsonschema
     #   jupyter-events
-rioxarray==0.15.1
+rich==13.7.1
+    # via keras
+rioxarray==0.17.0
     # via -r requirements.in
-rpds-py==0.18.0
+rpds-py==0.20.0
     # via
     #   jsonschema
     #   referencing
 rsa==4.9
     # via google-auth
-scikit-image==0.22.0
+scikit-image==0.24.0
     # via -r requirements.in
-scikit-learn==1.4.1.post1
+scikit-learn==1.5.1
     # via mlflow
-scipy==1.12.0
+scipy==1.14.0
     # via
     #   mlflow
     #   scikit-image
@@ -498,9 +548,9 @@ scipy==1.12.0
     #   statsmodels
 seaborn==0.13.2
     # via -r requirements.in
-send2trash==1.8.2
+send2trash==1.8.3
     # via jupyter-server
-shapely==2.0.3
+shapely==2.0.5
     # via cartopy
 six==1.16.0
     # via
@@ -513,10 +563,10 @@ six==1.16.0
     #   querystring-parser
     #   rfc3339-validator
     #   tensorboard
-    #   tensorflow-macos
+    #   tensorflow
 smmap==5.0.1
     # via gitdb
-sniffio==1.3.0
+sniffio==1.3.1
     # via
     #   anyio
     #   httpx
@@ -524,41 +574,37 @@ snuggs==1.4.7
     # via rasterio
 soupsieve==2.5
     # via beautifulsoup4
-sqlalchemy==2.0.27
+sqlalchemy==2.0.32
     # via
     #   alembic
     #   mlflow
-sqlparse==0.4.4
-    # via mlflow
+sqlparse==0.5.1
+    # via mlflow-skinny
 stack-data==0.6.3
     # via ipython
-statsmodels==0.14.1
+statsmodels==0.14.2
     # via -r requirements.in
-tensorboard==2.15.2
-    # via tensorflow-macos
+tensorboard==2.17.0
+    # via tensorflow
 tensorboard-data-server==0.7.2
     # via tensorboard
-tensorflow==2.15.0
+tensorflow==2.17.0
     # via -r requirements.in
-tensorflow-estimator==2.15.0
-    # via tensorflow-macos
-tensorflow-io-gcs-filesystem==0.36.0
-    # via tensorflow-macos
-tensorflow-macos==2.15.0
+tensorflow-io-gcs-filesystem==0.37.1
     # via tensorflow
 termcolor==2.4.0
-    # via tensorflow-macos
-terminado==0.18.0
+    # via tensorflow
+terminado==0.18.1
     # via
     #   jupyter-server
     #   jupyter-server-terminals
-threadpoolctl==3.3.0
+threadpoolctl==3.5.0
     # via scikit-learn
-tifffile==2024.2.12
+tifffile==2024.7.24
     # via scikit-image
-tinycss2==1.2.1
+tinycss2==1.3.0
     # via nbconvert
-tornado==6.4
+tornado==6.4.1
     # via
     #   ipykernel
     #   jupyter-client
@@ -566,9 +612,11 @@ tornado==6.4
     #   jupyterlab
     #   notebook
     #   terminado
-tqdm==4.66.2
-    # via cdsapi
-traitlets==5.14.1
+tqdm==4.66.5
+    # via
+    #   cdsapi
+    #   multiurl
+traitlets==5.14.3
     # via
     #   comm
     #   ipykernel
@@ -585,46 +633,52 @@ traitlets==5.14.1
     #   nbconvert
     #   nbformat
     #   qtconsole
-types-python-dateutil==2.8.19.20240106
+types-python-dateutil==2.9.0.20240316
     # via arrow
-typing-extensions==4.9.0
+typing-extensions==4.12.2
     # via
     #   alembic
+    #   cads-api-client
+    #   ipython
+    #   opentelemetry-sdk
+    #   optree
     #   sqlalchemy
-    #   tensorflow-macos
+    #   tensorflow
 tzdata==2024.1
     # via pandas
 uri-template==1.3.0
     # via jsonschema
-urllib3==2.2.1
+urllib3==2.2.2
     # via
     #   docker
     #   requests
 wcwidth==0.2.13
     # via prompt-toolkit
-webcolors==1.13
+webcolors==24.6.0
     # via jsonschema
 webencodings==0.5.1
     # via
     #   bleach
     #   tinycss2
-websocket-client==1.7.0
+websocket-client==1.8.0
     # via jupyter-server
-werkzeug==3.0.1
+werkzeug==3.0.3
     # via
     #   flask
     #   tensorboard
-wheel==0.42.0
+wheel==0.44.0
     # via astunparse
-widgetsnbextension==4.0.10
+widgetsnbextension==4.0.11
     # via ipywidgets
-wrapt==1.14.1
-    # via tensorflow-macos
-xarray==2024.2.0
+wrapt==1.16.0
+    # via
+    #   deprecated
+    #   tensorflow
+xarray==2024.7.0
     # via
     #   -r requirements.in
     #   rioxarray
-zipp==3.17.0
+zipp==3.19.2
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
