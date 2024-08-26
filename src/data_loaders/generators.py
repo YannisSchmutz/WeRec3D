@@ -3,6 +3,44 @@ from tensorflow.keras.utils import Sequence
 import itertools
 
 
+class DataGenerator2D(Sequence):
+    """
+    For 2D model comparison
+    """
+
+    def __init__(self, x_set, y_set, batch_size):
+        self.x, self.y = x_set, y_set
+        self.batch_size = batch_size
+        # self.seq_length = seq_length
+
+        self.indices = np.arange(self.x.shape[0])
+
+        # Fixed window specifics
+        self._h = 32
+        self._ph1 = 6
+        self._ph2 = self._ph1 + self._h
+
+        self._w = 64
+        self._pw1 = 2
+        self._pw2 = self._pw1 + self._w
+
+    def __len__(self):
+        return int(np.floor(len(self.indices) / float(self.batch_size)))
+
+    def __getitem__(self, idx):
+        # Generate indexes of the batch
+        current_indexes = self.indices[idx * self.batch_size:(idx + 1) * self.batch_size]
+        # Crop the specified window!
+        batch_x = self.x[current_indexes, self._ph1:self._ph2, self._pw1:self._pw2]
+        batch_y = self.y[current_indexes, self._ph1:self._ph2, self._pw1:self._pw2]
+
+        return batch_x, batch_y
+
+    def on_epoch_end(self):
+        # Shuffle indices after every epoch
+        np.random.shuffle(self.indices)
+
+
 class DataGenerator1(Sequence):
     """
     Basic predictors, fixed window
