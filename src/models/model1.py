@@ -3,11 +3,11 @@ from keras.models import Model
 from keras.layers import Input
 
 try:
-    from src.models.metrics import masked_mae, overall_mae
+    from src.models.metrics import masked_mae, overall_mae, masked_rmse, overall_rmse
     from src.models.losses import loss_total
     from src.models.layers_model_1 import create_model_layers
 except ImportError:
-    from models.metrics import masked_mae, overall_mae
+    from models.metrics import masked_mae, overall_mae, masked_rmse, overall_rmse
     from models.losses import loss_total
     from models.layers_model_1 import create_model_layers
 
@@ -21,6 +21,8 @@ class Model1(Model):
         self.loss_tracker = tf.keras.metrics.Mean(name='loss')
         self.mae_tracker = tf.keras.metrics.Mean(name='mae')
         self.masked_mae_tracker = tf.keras.metrics.Mean(name='masked_mae')
+        self.rmse_tracker = tf.keras.metrics.Mean(name='rmse')
+        self.masked_rmse_tracker = tf.keras.metrics.Mean(name='masked_rmse')
 
     def _get_config(self):
         # mlflow tries to access this private method...
@@ -51,7 +53,8 @@ class Model1(Model):
         # `reset_states()` yourself at the time of your choosing.
         :return:
         """
-        return [self.loss_tracker, self.masked_mae_tracker, self.mae_tracker]
+        return [self.loss_tracker, self.masked_mae_tracker, self.mae_tracker,
+                self.rmse_tracker, self.masked_rmse_tracker]
 
     def train_step(self, data):
         xb, yb = data
@@ -69,6 +72,11 @@ class Model1(Model):
         self.masked_mae_tracker.update_state(m_mae)
         self.mae_tracker.update_state(mae)
 
+        rmse = overall_rmse(yb, pred)
+        m_rmse = masked_rmse(yb, pred)
+        self.rmse_tracker.update_state(rmse)
+        self.masked_rmse_tracker.update_state(m_rmse)
+
         return {m.name: m.result() for m in self.metrics}
 
     def test_step(self, data):
@@ -77,11 +85,15 @@ class Model1(Model):
         m_mae = masked_mae(yb, pred)
         mae = overall_mae(yb, pred)
         total_loss = loss_total(m_mae, mae)
+        rmse = overall_rmse(yb, pred)
+        m_rmse = masked_rmse(yb, pred)
 
         # Automatically creates "val_loss", "val_masked_mae"
         self.loss_tracker.update_state(total_loss)
         self.masked_mae_tracker.update_state(m_mae)
         self.mae_tracker.update_state(mae)
+        self.rmse_tracker.update_state(rmse)
+        self.masked_rmse_tracker.update_state(m_rmse)
 
         # Return a dict mapping metric names to current value.
         # Note that it will include the loss (tracked in self.metrics).
