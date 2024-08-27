@@ -93,9 +93,8 @@ def main(activation_function_variant):
         # Default: beta_1=0.9, beta_2=0.999, learning_rate=0.001
         model.compile(optimizer=tf.keras.optimizers.Adam(), run_eagerly=None)
 
-    checkpoint_filepath = f"{CHECKPOINT_FILE_PATH}acV{activation_function_variant}/"
     model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
-        filepath=checkpoint_filepath,
+        filepath=f"{CHECKPOINT_FILE_PATH}acV{activation_function_variant}.weights.h5",
         save_weights_only=True,
         monitor='val_loss',
         mode='min',

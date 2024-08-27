@@ -13,4 +13,4 @@ if __name__ == '__main__':
         print(f"[*] Going to execute script using activation function variant {af_variant}%")
         subprocess.run(["python", "train.py",
                         "-a", af_variant])
-        print(f"[*] completed run-{af_variant}%")
+        print(f"[*] completed run {af_variant}")
