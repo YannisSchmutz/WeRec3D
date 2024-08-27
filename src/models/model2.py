@@ -14,10 +14,11 @@ except ImportError:
 
 class Model2(Model):
 
-    def __init__(self, cm_beta, *args, **kwargs):
+    def __init__(self, cm_beta, *args, alpha=0.5, **kwargs):
         super(Model2, self).__init__(*args, **kwargs)
 
         self.cm_beta = cm_beta
+        self.alpha = alpha
 
         # The trackers are used to get the mean value after each epoch
         self.loss_tracker = tf.keras.metrics.Mean(name='loss')
@@ -68,7 +69,7 @@ class Model2(Model):
             pred = self(xb, training=True)
             m_mae = masked_mae(yb, pred)
             mae = overall_mae(yb, pred)
-            basic_loss = loss_total(m_mae, mae)
+            basic_loss = loss_total(m_mae, mae, alpha=self.alpha)
             cm_loss = loss_covariance_matrix(yb, pred)
             total_loss = loss_total2(basic_loss, cm_loss, self.cm_beta)
 
@@ -93,7 +94,7 @@ class Model2(Model):
         pred = self(xb, training=False)
         m_mae = masked_mae(yb, pred)
         mae = overall_mae(yb, pred)
-        basic_loss = loss_total(m_mae, mae)
+        basic_loss = loss_total(m_mae, mae, alpha=self.alpha)
         cm_loss = loss_covariance_matrix(yb, pred)
         total_loss = loss_total2(basic_loss, cm_loss, self.cm_beta)
         rmse = overall_rmse(yb, pred)
@@ -113,13 +114,13 @@ class Model2(Model):
         return {m.name: m.result() for m in self.metrics}
 
 
-def create_model(*, f, h, w, ch, bs, cm_beta=0.9):
+def create_model(*, f, h, w, ch, bs, alpha=0.5, cm_beta=0.9, af_variant=1):
 
     # Fix batch_size since cn3d needs to know it in advance...
     input_sequence = Input(shape=(f, h, w, ch), batch_size=bs)
 
-    model_layer_tensor = create_model_layers(input_sequence)
-    model = Model2(cm_beta, inputs=input_sequence, outputs=model_layer_tensor, name='Model2')
+    model_layer_tensor = create_model_layers(input_sequence, af_variant=af_variant)
+    model = Model2(cm_beta, alpha=alpha, inputs=input_sequence, outputs=model_layer_tensor, name='Model2')
     # model.summary()
 
     return model

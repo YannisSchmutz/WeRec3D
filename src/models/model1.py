@@ -14,7 +14,7 @@ except ImportError:
 
 class Model1(Model):
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, alpha=0.5, **kwargs):
         super(Model1, self).__init__(*args, **kwargs)
 
         # The trackers are used to get the mean value after each epoch
@@ -23,6 +23,8 @@ class Model1(Model):
         self.masked_mae_tracker = tf.keras.metrics.Mean(name='masked_mae')
         self.rmse_tracker = tf.keras.metrics.Mean(name='rmse')
         self.masked_rmse_tracker = tf.keras.metrics.Mean(name='masked_rmse')
+
+        self.alpha = alpha
 
     def _get_config(self):
         # mlflow tries to access this private method...
@@ -63,7 +65,7 @@ class Model1(Model):
             pred = self(xb, training=True)
             m_mae = masked_mae(yb, pred)
             mae = overall_mae(yb, pred)
-            total_loss = loss_total(m_mae, mae)
+            total_loss = loss_total(m_mae, mae, alpha=self.alpha)
 
         gradients = tape.gradient(total_loss, self.trainable_weights)
         self.optimizer.apply_gradients(zip(gradients, self.trainable_weights))
@@ -84,7 +86,7 @@ class Model1(Model):
         pred = self(xb, training=False)
         m_mae = masked_mae(yb, pred)
         mae = overall_mae(yb, pred)
-        total_loss = loss_total(m_mae, mae)
+        total_loss = loss_total(m_mae, mae, alpha=self.alpha)
         rmse = overall_rmse(yb, pred)
         m_rmse = masked_rmse(yb, pred)
 
@@ -100,13 +102,13 @@ class Model1(Model):
         return {m.name: m.result() for m in self.metrics}
 
 
-def create_model(*, f, h, w, ch, bs):
+def create_model(*, f, h, w, ch, bs, alpha=0.5, af_variant=1):
 
     # Fix batch_size since cn3d needs to know it in advance...
     input_sequence = Input(shape=(f, h, w, ch), batch_size=bs)
 
-    model_layer_tensor = create_model_layers(input_sequence)
-    model = Model1(inputs=input_sequence, outputs=model_layer_tensor, name='Model1')
+    model_layer_tensor = create_model_layers(input_sequence, af_variant=af_variant)
+    model = Model1(inputs=input_sequence, outputs=model_layer_tensor, name='Model1', alpha=alpha)
     # model.summary()
 
     return model
