@@ -46,7 +46,7 @@ CHECKPOINT_FILE_PATH = "model_checkpoint/"
 # TODO: For alpha an ablation could be performed within incremental pre-training.
 
 @click.command()
-@click.option('-a', '--activation_function_variant', required=False, type=str)
+@click.option('-a', '--activation_function_variant', required=False, type=int)
 def main(activation_function_variant):
     # SET MLFLOW dir
     mlflow.set_tracking_uri(f"file://{SRC_DIR}/experiments_evaluation/mlruns")
