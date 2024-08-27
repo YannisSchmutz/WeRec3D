@@ -1,6 +1,12 @@
 
 
 EXPERIMENTS = {
+    "ablation_activation_functions": {"desc": "Investigate different activation function combinations.",
+                                      "model": "model1",
+                                      "loss": "alpha=1",
+                                      "hyperparameters": "default",
+                                      "seasonal": "Working on anomalies.",
+                     },
     # === DONE ===
     "ex1_baseline": {"desc": "Train baseline model on anomalies",
                      "model": "model1",
