@@ -131,6 +131,83 @@ def overall_mae(y_true, y_pred):
     return mae
 
 
+@tf.function
+def overall_rmse(y_true, y_pred):
+    """
+    >>> # === Three-Channel Variable Tests ====
+    >>> # Expect zero
+    >>> pred = np.ones((4, 32, 64, 64, 3))
+    >>> gt = np.ones((4, 32, 64, 64, 6)) # Include masks right here
+    >>> overall_mae(gt, pred)
+    <tf.Tensor: shape=(), dtype=float64, numpy=0.0>
+    >>> pred = np.zeros((4, 32, 64, 64, 3))
+    >>> gt = np.ones((4, 32, 64, 64, 6))
+    >>> overall_mae(gt, pred)
+    <tf.Tensor: shape=(), dtype=float64, numpy=1.0>
+    >>> pred = np.zeros((4, 32, 64, 64, 3))
+    >>> pred += 1.5
+    >>> gt = np.ones((4, 32, 64, 64, 6))
+    >>> overall_mae(gt, pred)
+    <tf.Tensor: shape=(), dtype=float64, numpy=0.5>
+    """
+    if y_true.dtype != y_pred.dtype:
+        y_pred = tf.cast(y_pred, y_true.dtype)
+    ch = tf.shape(y_true)[4]
+
+    half_ch = tf.dtypes.cast(tf.divide(ch, 2), tf.int32)
+    y_true = y_true[..., :half_ch]
+
+    # Calculate the squared differences
+    squared_diffs = tf.square(y_true - y_pred)
+    # Calculate the mean of the squared differences
+    mean_squared_diff = tf.reduce_mean(squared_diffs)
+    # Calculate the square root of the mean squared differences (RMSE)
+    return tf.sqrt(mean_squared_diff)
+
+
+@tf.function
+def masked_rmse(y_true, y_pred):
+    """
+    >>> gt = np.array([[2.0,4.0], [8.0, 16.0]])  # h, w
+    >>> gt = np.expand_dims(gt, axis=-1)
+    >>> gt = np.repeat(gt, 2, axis=-1)
+    >>> gt = np.expand_dims(gt, axis=0)
+    >>> gt = np.repeat(gt, 2, axis=0)
+    >>> gt = np.expand_dims(gt, axis=0)
+    >>> gt = np.repeat(gt, 2, axis=0)
+    >>> msk = np.ones_like(gt)
+    >>> gt = np.concatenate((gt, msk), axis=-1)
+    >>> pred = np.array([[1.0, 2.0], [5.0, 12.0]])
+    >>> pred = np.expand_dims(pred, axis=-1)
+    >>> pred = np.repeat(pred, 2, axis=-1)
+    >>> pred = np.expand_dims(pred, axis=0)
+    >>> pred = np.repeat(pred, 2, axis=0)
+    >>> pred = np.expand_dims(pred, axis=0)
+    >>> pred = np.repeat(pred, 2, axis=0)
+    >>> masked_rmse(gt, pred)
+    <tf.Tensor: shape=(), dtype=float64, numpy=2.7386127875258306>
+    >>> gt[:, :, 1, ...] = 0
+    >>> masked_rmse(gt, pred)
+    <tf.Tensor: shape=(), dtype=float64, numpy=1.5811388300841898>
+    """
+    if y_true.dtype != y_pred.dtype:
+        y_pred = tf.cast(y_pred, y_true.dtype)
+    ch = tf.shape(y_true)[4]
+
+    half_ch = tf.dtypes.cast(tf.divide(ch, 2), tf.int32)
+    masks = y_true[..., half_ch:]
+    y_true = y_true[..., :half_ch]
+
+    # Calculate the squared differences
+    squared_diffs = tf.square(y_true - y_pred)
+    # Only keep values where mask == 1, the others are multiplied by zero.
+    masked_squared_diffs = tf.math.multiply(masks, squared_diffs)
+    mean_squared_diff = tf.reduce_sum(masked_squared_diffs) / tf.reduce_sum(masks)
+    m_rmse = tf.sqrt(mean_squared_diff)
+
+    return m_rmse
+
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
