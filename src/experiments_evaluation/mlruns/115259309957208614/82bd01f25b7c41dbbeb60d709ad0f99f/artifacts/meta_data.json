@@ -1,0 +1,9 @@
+{
+  "desc": "Investigate different activation function combinations.",
+  "model": "model1",
+  "loss": "alpha=1",
+  "hyperparameters": "default",
+  "seasonal": "without seasonality",
+  "activation_function_variant": 5,
+  "alpha": 1.0
+}
