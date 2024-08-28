@@ -1,8 +1,7 @@
 import subprocess
 
 
-# ACTIVATION_FUNCTION_VARIANTS = [str(v) for v in (range(1, 10))]
-ACTIVATION_FUNCTION_VARIANTS = [str(v) for v in (range(7, 10))]
+ACTIVATION_FUNCTION_VARIANTS = [str(v) for v in (range(1, 10))]
 
 
 if __name__ == '__main__':
