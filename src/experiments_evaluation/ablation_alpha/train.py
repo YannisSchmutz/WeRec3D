@@ -50,7 +50,12 @@ def main(exp_name, alpha, percentage, load_last):
 
     experiment_id = get_experiment(exp_name)
     print(f"[*] Using experiment: {exp_name}")
-    experiment_metadata = EXPERIMENTS[exp_name]
+    experiment_metadata = {"desc": "Investigate different alpha values",
+                           "model": "model1",
+                           "loss": "",
+                           "hyperparameters": "default",
+                           "seasonal": "",
+                           }
 
     print("[*] Experiment metadata:")
     pp(experiment_metadata)
