@@ -92,7 +92,7 @@ def main(exp_name, alpha, percentage, load_last):
         model.compile(optimizer=tf.keras.optimizers.Adam(), run_eagerly=None)
         if load_last:
             print(f"[*] Loading the weights of the last trained model ({load_last}%)")
-            model.load_weights(f"{CHECKPOINT_FILE_PATH}p{load_last}/")
+            model.load_weights(f"{CHECKPOINT_FILE_PATH}p{load_last}_alpha{alpha}.weights.h5")
 
     model_checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
         filepath=f"{CHECKPOINT_FILE_PATH}p{percentage}_alpha{alpha}.weights.h5",
