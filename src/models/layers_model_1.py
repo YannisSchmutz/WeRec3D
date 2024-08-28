@@ -1,6 +1,6 @@
 from keras.layers import Concatenate, Conv3D, ZeroPadding3D, Conv3DTranspose, Cropping3D
 from keras.layers import BatchNormalization
-from keras.activations import elu, linear, tanh, leaky_relu
+from keras.activations import elu, linear, tanh, leaky_relu, relu
 
 
 def __get_activation_function(variant, layer):
@@ -18,6 +18,12 @@ def __get_activation_function(variant, layer):
         return leaky_relu if layer < 16 else tanh
     elif variant == 6:
         return leaky_relu if layer < 15 else tanh
+    elif variant == 7:
+        return relu
+    elif variant == 8:
+        return relu if layer < 16 else tanh
+    elif variant == 9:
+        return relu if layer < 15 else tanh
     else:
         raise ValueError(f"Activation function variant {variant} not supported.")
 
@@ -30,6 +36,9 @@ def create_model_layers(st_batch, verbose=True, af_variant=1):
     af_variant == 4 -> all leaky_relu, 17 linear
     af_variant == 5 -> all leaky_relu, 17 linear, 16 tanh
     af_variant == 6 -> all leaky_relu, 17 linear, 16&15 tanh
+    af_variant == 7 -> all relu, 17 linear
+    af_variant == 8 -> all relu, 17 linear, 16 tanh
+    af_variant == 9 -> all relu, 17 linear, 16&15 tanh
     """
 
     # Half of the channel-dimension size is our output since the other half is the mask
