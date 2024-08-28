@@ -1,6 +1,6 @@
 import subprocess
 
-ALPHA = ["0.0", "0.5", "1.0"]
+ALPHA = ["0.0", "1.0"]  # We can use the already trained 0.5-alpha. No need to train it here again.
 PERCENTAGES = ["10", "20", "30", "40", "50", "60", "70", "80", "90", "99"]
 LOADINGS = ["", "10", "20", "30", "40", "50", "60", "70", "80", "90"]
 
