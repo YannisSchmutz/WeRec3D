@@ -19,7 +19,7 @@ if __name__ == '__main__':
                 print(f"[*] (Alpha={alpha}) Going to execute script using {percentage}% without loading a pretrained model")
 
             subprocess.run(["python", "train.py",
-                            "-n", f"ablation_alpha_{alpha}"
+                            "-n", f"ablation_alpha_{alpha}",
                             "-a", alpha,
                             "-p", percentage,
                             "-l", load_last])
