@@ -1,0 +1,15 @@
+artifact_uri: file:///home/yannis/workspace/WeRec3D/src/experiments_evaluation/mlruns/724957520523033660/df05094d719441e28fc45430c9972b3b/artifacts
+end_time: 1724851403629
+entry_point_name: ''
+experiment_id: '724957520523033660'
+lifecycle_stage: active
+run_id: df05094d719441e28fc45430c9972b3b
+run_name: inc_pretrain_10p
+run_uuid: df05094d719441e28fc45430c9972b3b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724850247765
+status: 3
+tags: []
+user_id: yannis

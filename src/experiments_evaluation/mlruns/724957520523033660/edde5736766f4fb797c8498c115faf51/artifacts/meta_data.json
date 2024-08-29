@@ -1,0 +1,7 @@
+{
+  "desc": "Investigate different alpha values",
+  "model": "model1",
+  "loss": "",
+  "hyperparameters": "default",
+  "seasonal": ""
+}
