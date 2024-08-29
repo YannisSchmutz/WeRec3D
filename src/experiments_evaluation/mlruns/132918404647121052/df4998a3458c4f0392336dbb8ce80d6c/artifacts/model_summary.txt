@@ -1,0 +1,107 @@
+Model: "Model2D"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to                     
+==================================================================================================
+ input_1 (InputLayer)           [(32, 32, 64, 4)]    0           []                               
+                                                                                                  
+ layer_1 (Conv2D)               (32, 32, 64, 64)     6464        ['input_1[0][0]']                
+                                                                                                  
+ bn_1 (BatchNormalization)      (32, 32, 64, 64)     256         ['layer_1[0][0]']                
+                                                                                                  
+ zero_padding2d (ZeroPadding2D)  (32, 34, 66, 64)    0           ['bn_1[0][0]']                   
+                                                                                                  
+ layer_2 (Conv2D)               (32, 16, 32, 128)    131200      ['zero_padding2d[0][0]']         
+                                                                                                  
+ bn_2 (BatchNormalization)      (32, 16, 32, 128)    512         ['layer_2[0][0]']                
+                                                                                                  
+ layer_3 (Conv2D)               (32, 16, 32, 128)    147584      ['bn_2[0][0]']                   
+                                                                                                  
+ bn_3 (BatchNormalization)      (32, 16, 32, 128)    512         ['layer_3[0][0]']                
+                                                                                                  
+ zero_padding2d_1 (ZeroPadding2  (32, 18, 34, 128)   0           ['bn_3[0][0]']                   
+ D)                                                                                               
+                                                                                                  
+ comb_layer_4 (Conv2D)          (32, 8, 16, 256)     295168      ['zero_padding2d_1[0][0]']       
+                                                                                                  
+ comb_bn_4 (BatchNormalization)  (32, 8, 16, 256)    1024        ['comb_layer_4[0][0]']           
+                                                                                                  
+ layer_5 (Conv2D)               (32, 8, 16, 256)     590080      ['comb_bn_4[0][0]']              
+                                                                                                  
+ bn_5 (BatchNormalization)      (32, 8, 16, 256)     1024        ['layer_5[0][0]']                
+                                                                                                  
+ layer_6 (Conv2D)               (32, 8, 16, 256)     590080      ['bn_5[0][0]']                   
+                                                                                                  
+ bn_6 (BatchNormalization)      (32, 8, 16, 256)     1024        ['layer_6[0][0]']                
+                                                                                                  
+ layer_7 (Conv2D)               (32, 8, 16, 256)     590080      ['bn_6[0][0]']                   
+                                                                                                  
+ bn_7 (BatchNormalization)      (32, 8, 16, 256)     1024        ['layer_7[0][0]']                
+                                                                                                  
+ layer_8 (Conv2D)               (32, 8, 16, 256)     590080      ['bn_7[0][0]']                   
+                                                                                                  
+ bn_8 (BatchNormalization)      (32, 8, 16, 256)     1024        ['layer_8[0][0]']                
+                                                                                                  
+ layer_9 (Conv2D)               (32, 8, 16, 256)     590080      ['bn_8[0][0]']                   
+                                                                                                  
+ bn_9 (BatchNormalization)      (32, 8, 16, 256)     1024        ['layer_9[0][0]']                
+                                                                                                  
+ concatenate (Concatenate)      (32, 8, 16, 512)     0           ['bn_7[0][0]',                   
+                                                                  'bn_9[0][0]']                   
+                                                                                                  
+ layer_10 (Conv2D)              (32, 8, 16, 256)     1179904     ['concatenate[0][0]']            
+                                                                                                  
+ bn_10 (BatchNormalization)     (32, 8, 16, 256)     1024        ['layer_10[0][0]']               
+                                                                                                  
+ concatenate_1 (Concatenate)    (32, 8, 16, 512)     0           ['bn_6[0][0]',                   
+                                                                  'bn_10[0][0]']                  
+                                                                                                  
+ layer_11 (Conv2D)              (32, 8, 16, 256)     1179904     ['concatenate_1[0][0]']          
+                                                                                                  
+ bn_11 (BatchNormalization)     (32, 8, 16, 256)     1024        ['layer_11[0][0]']               
+                                                                                                  
+ concatenate_2 (Concatenate)    (32, 8, 16, 512)     0           ['bn_5[0][0]',                   
+                                                                  'bn_11[0][0]']                  
+                                                                                                  
+ layer_12 (Conv2D)              (32, 8, 16, 256)     1179904     ['concatenate_2[0][0]']          
+                                                                                                  
+ bn_12 (BatchNormalization)     (32, 8, 16, 256)     1024        ['layer_12[0][0]']               
+                                                                                                  
+ concatenate_3 (Concatenate)    (32, 8, 16, 512)     0           ['comb_bn_4[0][0]',              
+                                                                  'bn_12[0][0]']                  
+                                                                                                  
+ layer_13 (Conv2DTranspose)     (32, 17, 33, 128)    589952      ['concatenate_3[0][0]']          
+                                                                                                  
+ crop_13 (Cropping2D)           (32, 16, 32, 128)    0           ['layer_13[0][0]']               
+                                                                                                  
+ bn_13 (BatchNormalization)     (32, 16, 32, 128)    512         ['crop_13[0][0]']                
+                                                                                                  
+ concatenate_4 (Concatenate)    (32, 16, 32, 256)    0           ['bn_3[0][0]',                   
+                                                                  'bn_13[0][0]']                  
+                                                                                                  
+ layer_14 (Conv2D)              (32, 16, 32, 128)    295040      ['concatenate_4[0][0]']          
+                                                                                                  
+ bn_14 (BatchNormalization)     (32, 16, 32, 128)    512         ['layer_14[0][0]']               
+                                                                                                  
+ concatenate_5 (Concatenate)    (32, 16, 32, 256)    0           ['bn_2[0][0]',                   
+                                                                  'bn_14[0][0]']                  
+                                                                                                  
+ layer_15 (Conv2DTranspose)     (32, 33, 65, 64)     147520      ['concatenate_5[0][0]']          
+                                                                                                  
+ crop_15 (Cropping2D)           (32, 32, 64, 64)     0           ['layer_15[0][0]']               
+                                                                                                  
+ bn_15 (BatchNormalization)     (32, 32, 64, 64)     256         ['crop_15[0][0]']                
+                                                                                                  
+ concatenate_6 (Concatenate)    (32, 32, 64, 128)    0           ['bn_1[0][0]',                   
+                                                                  'bn_15[0][0]']                  
+                                                                                                  
+ layer_16 (Conv2D)              (32, 32, 64, 32)     36896       ['concatenate_6[0][0]']          
+                                                                                                  
+ bn_16 (BatchNormalization)     (32, 32, 64, 32)     128         ['layer_16[0][0]']               
+                                                                                                  
+ layer_17 (Conv2D)              (32, 32, 64, 2)      578         ['bn_16[0][0]']                  
+                                                                                                  
+==================================================================================================
+Total params: 8,152,428
+Trainable params: 8,146,466
+Non-trainable params: 5,962
+__________________________________________________________________________________________________
