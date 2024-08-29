@@ -1,13 +1,14 @@
 
 
 EXPERIMENTS = {
+    "model_2d": {"desc": "Evaluate our architecture with only spatial dimensions"},
+    # === DONE ===
     "ablation_alpha": {"desc": "Investigate different alpha values",
                        "model": "model1",
                        "loss": "",
                        "hyperparameters": "default",
                        "seasonal": "",
                        },
-    # === DONE ===
     "ablation_activation_functions": {"desc": "Investigate different activation function combinations.",
                                       "model": "model1",
                                       "loss": "alpha=1",

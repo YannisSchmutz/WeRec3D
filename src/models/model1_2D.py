@@ -3,12 +3,8 @@ from keras.models import Model
 from keras.layers import Input
 
 try:
-    #from src.models.metrics import masked_mae, overall_mae
-    # from src.models.losses import loss_total
     from src.models.layers_model_2D import create_model_layers
 except ImportError:
-    # from models.metrics import masked_mae, overall_mae
-    # from models.losses import loss_total
     from models.layers_model_2D import create_model_layers
 
 
@@ -67,6 +63,43 @@ def loss_total(m_mae, mae, alpha=0.5):
     return tf.add(tf.multiply(alpha_tensor, m_mae), tf.multiply(linear_complement, mae))
 
 
+@tf.function
+def overall_rmse(y_true, y_pred):
+    if y_true.dtype != y_pred.dtype:
+        y_pred = tf.cast(y_pred, y_true.dtype)
+    ch = tf.shape(y_true)[3]
+
+    half_ch = tf.dtypes.cast(tf.divide(ch, 2), tf.int32)
+    y_true = y_true[..., :half_ch]
+
+    # Calculate the squared differences
+    squared_diffs = tf.square(y_true - y_pred)
+    # Calculate the mean of the squared differences
+    mean_squared_diff = tf.reduce_mean(squared_diffs)
+    # Calculate the square root of the mean squared differences (RMSE)
+    return tf.sqrt(mean_squared_diff)
+
+
+@tf.function
+def masked_rmse(y_true, y_pred):
+    if y_true.dtype != y_pred.dtype:
+        y_pred = tf.cast(y_pred, y_true.dtype)
+    ch = tf.shape(y_true)[3]
+
+    half_ch = tf.dtypes.cast(tf.divide(ch, 2), tf.int32)
+    masks = y_true[..., half_ch:]
+    y_true = y_true[..., :half_ch]
+
+    # Calculate the squared differences
+    squared_diffs = tf.square(y_true - y_pred)
+    # Only keep values where mask == 1, the others are multiplied by zero.
+    masked_squared_diffs = tf.math.multiply(masks, squared_diffs)
+    mean_squared_diff = tf.reduce_sum(masked_squared_diffs) / tf.reduce_sum(masks)
+    m_rmse = tf.sqrt(mean_squared_diff)
+
+    return m_rmse
+
+
 class Model2D(Model):
 
     def __init__(self, *args, **kwargs):
@@ -76,6 +109,8 @@ class Model2D(Model):
         self.loss_tracker = tf.keras.metrics.Mean(name='loss')
         self.mae_tracker = tf.keras.metrics.Mean(name='mae')
         self.masked_mae_tracker = tf.keras.metrics.Mean(name='masked_mae')
+        self.rmse_tracker = tf.keras.metrics.Mean(name='rmse')
+        self.masked_rmse_tracker = tf.keras.metrics.Mean(name='masked_rmse')
 
     def _get_config(self):
         # mlflow tries to access this private method...
@@ -106,7 +141,8 @@ class Model2D(Model):
         # `reset_states()` yourself at the time of your choosing.
         :return:
         """
-        return [self.loss_tracker, self.masked_mae_tracker, self.mae_tracker]
+        return [self.loss_tracker, self.masked_mae_tracker, self.mae_tracker,
+                self.rmse_tracker, self.masked_rmse_tracker]
 
     def train_step(self, data):
         xb, yb = data
@@ -124,6 +160,11 @@ class Model2D(Model):
         self.masked_mae_tracker.update_state(m_mae)
         self.mae_tracker.update_state(mae)
 
+        rmse = overall_rmse(yb, pred)
+        m_rmse = masked_rmse(yb, pred)
+        self.rmse_tracker.update_state(rmse)
+        self.masked_rmse_tracker.update_state(m_rmse)
+
         return {m.name: m.result() for m in self.metrics}
 
     def test_step(self, data):
@@ -132,11 +173,15 @@ class Model2D(Model):
         m_mae = masked_mae(yb, pred)
         mae = overall_mae(yb, pred)
         total_loss = loss_total(m_mae, mae)
+        rmse = overall_rmse(yb, pred)
+        m_rmse = masked_rmse(yb, pred)
 
         # Automatically creates "val_loss", "val_masked_mae"
         self.loss_tracker.update_state(total_loss)
         self.masked_mae_tracker.update_state(m_mae)
         self.mae_tracker.update_state(mae)
+        self.rmse_tracker.update_state(rmse)
+        self.masked_rmse_tracker.update_state(m_rmse)
 
         # Return a dict mapping metric names to current value.
         # Note that it will include the loss (tracked in self.metrics).
