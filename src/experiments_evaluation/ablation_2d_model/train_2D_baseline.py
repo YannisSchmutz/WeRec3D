@@ -39,7 +39,6 @@ CHECKPOINT_FILE_PATH = "model_checkpoint/"
 
 
 def main():
-    # TODO: Model uses the same activation functions as in first paper version. Adjust depending on how to proceed further.
     percentage = 99
 
     # SET MLFLOW dir
@@ -69,11 +68,6 @@ def main():
     y_train = train_val_sets['train']['y']
     X_validation = train_val_sets['validation']['x']
     y_validation = train_val_sets['validation']['y']
-
-    # X_train = X_train[:64]
-    # y_train = y_train[:64]
-    # X_validation = X_validation[:64]
-    # y_validation = y_validation[:64]
 
     print(f"[*] Train X shape: {X_train.shape}")
     print(f"[*] Train y shape: {y_train.shape}")
